@@ -15,6 +15,9 @@ jobs:
               run: |
                 pwd
                 ls
+                cd docs
+                pwd
+                ls
             
             - name: scp files
               uses: appleboy/scp-action@v0.1.4
