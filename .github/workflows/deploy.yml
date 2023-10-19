@@ -12,18 +12,17 @@ jobs:
               uses: actions/checkout@v3
 
             - name: pwd
-              run: pwd
+              run: |
+                pwd
+                ls
             
             - name: scp files
-              uses: c0c1/scp-action@v1.0
+              uses: appleboy/scp-action@v0.1.4
               with:
-                # Sorce dir to deploy
-                src: .
-                # SSH address
-                host: ${{secrets.SSH_HOST}}
-                # Remote dir path
-                remote: ${{secrets.HOST_SITE_PATH}}
+                host: ${{ secrets.SSH_HOST }}
+                username: ${{ secrets.SSH_USER }}
+                password: ${{ secrets.SSH_PWD }}
                 port: 22
-                user: ${{secrets.SSH_USER}}
-                key: ${{secrets.SSH_PWD}}
+                source: ./
+                target: ${{secrets.HOST_SITE_PATH}}
 
