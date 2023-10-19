@@ -1,0 +1,29 @@
+
+name: deploy cloud
+
+on: [workflow_dispatch, push]
+
+jobs:
+    deploy-job:
+        name: deploy site to cloud server
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v3
+
+            - name: pwd
+              run: pwd
+            
+            - name: scp files
+              uses: c0c1/scp-action@v1.0
+              with:
+                # Sorce dir to deploy
+                src: .
+                # SSH address
+                host: ${{secrets.SSH_HOST}}
+                # Remote dir path
+                remote: ${{secrets.HOST_SITE_PATH}}
+                port: 22
+                user: ${{secrets.SSH_USER}}
+                key: ${{secrets.SSH_PWD}}
+
