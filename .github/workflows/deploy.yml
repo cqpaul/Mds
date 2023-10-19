@@ -23,6 +23,7 @@ jobs:
                 username: ${{ secrets.SSH_USER }}
                 password: ${{ secrets.SSH_PWD }}
                 port: 22
-                source: docs/about/*
+                source: docs/*
                 target: ${{secrets.HOST_SITE_PATH}}
+                strip_components: 1
 
